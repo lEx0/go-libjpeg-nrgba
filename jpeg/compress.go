@@ -1,5 +1,7 @@
 package jpeg
 
+import "fmt"
+
 /*
 #include <stdio.h>
 #include <stdlib.h>
@@ -242,7 +244,7 @@ func Encode(w io.Writer, src image.Image, opt *EncoderOptions) (err error) {
 	case *rgb.Image:
 		err = encodeRGB(cinfo, s, opt)
 	default:
-		return errors.New("unsupported image type")
+		return fmt.Errorf("unsupported image type: %T", s)
 	}
 
 	return
